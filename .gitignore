@@ -39,3 +39,15 @@
 
 # debug information files
 *.dwo
+
+
+# ide config
+.vscode
+
+# local builds
+build
+build_and_run.sh
+clean_build_and_run.sh
+
+# cmake config for external libs
+# !external/glad/CMakeLists.txt
