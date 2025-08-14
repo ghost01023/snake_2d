@@ -13,6 +13,7 @@
 
 food generate_food(ShapeType shape) {
     // generate random x and y
+    float black[] = {0.0f, 0.0f, 0.0f};
     srand(time(0));
     float random_point_x = rand() / (float)RAND_MAX;
     // int random_sign = rand() % 2;
@@ -55,44 +56,69 @@ food generate_food(ShapeType shape) {
     new_food.center[0] = random_point_x;
     new_food.center[1] = random_point_y;
 
+    int food_coord_iter = 0;
     if (shape == TRIANGLE) {
         // float *f = new_food.food_coords;
-        new_food.food_coords = (float *)malloc(sizeof(float) * 9);
+        new_food.size = 9 * 2;
+        new_food.food_coords = (float *)malloc(sizeof(float) * new_food.size);
         //bottom left
-        new_food.food_coords[0] = random_point_x - 0.1;
-        new_food.food_coords[1] = random_point_y - 0.1;
-        new_food.food_coords[2] = 1.0;
+        new_food.food_coords[food_coord_iter++] = random_point_x - 0.1;
+        new_food.food_coords[food_coord_iter++] = random_point_y - 0.1;
+        new_food.food_coords[food_coord_iter++] = 1.0;
         cout << "bottom left is " << new_food.food_coords[0] << " " << new_food.food_coords[1] << endl;
+        for (int i = 0; i < (int)(sizeof(black) / sizeof(int)); i++) {
+            new_food.food_coords[food_coord_iter++] = black[i];
+        }
         //top
-        new_food.food_coords[3] = random_point_x;
-        new_food.food_coords[4] = random_point_y + 0.1;
-        new_food.food_coords[5] = 1.0;
+        new_food.food_coords[food_coord_iter++] = random_point_x;
+        new_food.food_coords[food_coord_iter++] = random_point_y + 0.1;
+        new_food.food_coords[food_coord_iter++] = 1.0;
         cout << "top is " << new_food.food_coords[3] << " " << new_food.food_coords[4] << endl;
+        for (int i = 0; i < (int)(sizeof(black) / sizeof(int)); i++) {
+            new_food.food_coords[food_coord_iter++] = black[i];
+        }
         //bottom right
-        new_food.food_coords[6] = random_point_x + 0.1;
-        new_food.food_coords[7] = random_point_y + 0.1;
-        new_food.food_coords[8] = 1.0;
+        new_food.food_coords[food_coord_iter++] = random_point_x + 0.1;
+        new_food.food_coords[food_coord_iter++] = random_point_y + 0.1;
+        new_food.food_coords[food_coord_iter++] = 1.0;
         cout << "bottom right is " << new_food.food_coords[6] << " " << new_food.food_coords[7] << endl;
+        for (int i = 0; i < (int)(sizeof(black) / sizeof(int)); i++) {
+            new_food.food_coords[food_coord_iter++] = black[i];
+        }
     } else if(shape == SQUARE) {
-        new_food.food_coords = (float *)malloc(sizeof(float) * 12);
+        new_food.size = 12 * 2;
+        new_food.food_coords = (float *)malloc(sizeof(float) * new_food.size);
         //top left
-        new_food.food_coords[0] = random_point_x - 0.1;
-        new_food.food_coords[1] = random_point_y + 0.1;
-        new_food.food_coords[2] = 1.0f;
+        new_food.food_coords[food_coord_iter++] = random_point_x - 0.1;
+        new_food.food_coords[food_coord_iter++] = random_point_y + 0.1;
+        new_food.food_coords[food_coord_iter++] = 1.0f;
+        for (int i = 0; i < (int)(sizeof(black) / sizeof(int)); i++) {
+            new_food.food_coords[food_coord_iter++] = black[i];
+        }
         //top right
-        new_food.food_coords[3] = random_point_x + 0.1;
-        new_food.food_coords[4] = random_point_y + 0.1;
-        new_food.food_coords[5] = 1.0f;
+        new_food.food_coords[food_coord_iter++] = random_point_x + 0.1;
+        new_food.food_coords[food_coord_iter++] = random_point_y + 0.1;
+        new_food.food_coords[food_coord_iter++] = 1.0f;
+        for (int i = 0; i < (int)(sizeof(black) / sizeof(int)); i++) {
+            new_food.food_coords[food_coord_iter++] = black[i];
+        }
         //bottom left
-        new_food.food_coords[6] = random_point_x - 0.1;
-        new_food.food_coords[7] = random_point_y - 0.1;
-        new_food.food_coords[8] = 1.0f;
+        new_food.food_coords[food_coord_iter++] = random_point_x - 0.1;
+        new_food.food_coords[food_coord_iter++] = random_point_y - 0.1;
+        new_food.food_coords[food_coord_iter++] = 1.0f;
+        for (int i = 0; i < (int)(sizeof(black) / sizeof(int)); i++) {
+            new_food.food_coords[food_coord_iter++] = black[i];
+        }
         //bottom right
-        new_food.food_coords[9] = random_point_x + 0.1;
-        new_food.food_coords[10] = random_point_y - 0.1;
-        new_food.food_coords[11] = 1.0f;
-        
+        new_food.food_coords[food_coord_iter++] = random_point_x + 0.1;
+        new_food.food_coords[food_coord_iter++] = random_point_y - 0.1;
+        new_food.food_coords[food_coord_iter++] = 1.0f;
+        for (int i = 0; i < (int)(sizeof(black) / sizeof(int)); i++) {
+            new_food.food_coords[food_coord_iter++] = black[i];
+        }
         // new_food.center
+    } else if (shape == CIRCLE) {
+        cout << "Need to draw up circle" << endl;
     }
     return new_food;
 }
