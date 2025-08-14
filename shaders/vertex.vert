@@ -20,5 +20,5 @@ void main() {
         // square
     }
     gl_Position = vec4(a_pos.x, a_pos.y, 0.0, 1.0);
-    color = vec4(1.0, 1.0, 1.0, 0.71);
+    color = vec4(a_col, 0.71);
 }

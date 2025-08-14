@@ -50,9 +50,13 @@ GLuint create_array_buffer_object(GLfloat vertices[], int length, GLenum draw_ty
 	// glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, length * sizeof(float), (void *)(3 * sizeof(float)));
 	// glEnableVertexAttribArray(1);
 	int sequence_iter = 0;
+	int stride = 0;
 	for (int i = 0; i < sequence_length; i++) {
-		printf("i: %d, attribute_sequence[i]: %d, length * sizeof(float): %lu, sequence_iter * sizeof(float): %lu\n", i, attribute_sequence[i], length * sizeof(float), sequence_iter * sizeof(float));
-		glVertexAttribPointer(i, attribute_sequence[i], GL_FLOAT, GL_FALSE, length * sizeof(float), (void *)(sequence_iter * sizeof(float)));
+		stride += attribute_sequence[i];
+	}
+	for (int i = 0; i < sequence_length; i++) {
+		printf("i: %d, attribute_sequence[i]: %d, length * sizeof(float): %lu, sequence_iter * sizeof(float): %lu\n", i, attribute_sequence[i], stride * sizeof(float), sequence_iter * sizeof(float));
+		glVertexAttribPointer(i, attribute_sequence[i], GL_FLOAT, GL_FALSE, stride * sizeof(float), (void *)(sequence_iter * sizeof(float)));
 		sequence_iter += attribute_sequence[i];
 		glEnableVertexAttribArray(i);
 	}
@@ -191,8 +195,8 @@ int main() {
 			//CENTER OF FOOD
 			
 			glBindVertexArray(VAO[1]);
-			int attrib_seq_2[] = {1};
-			create_array_buffer_object(new_food.center, new_food.size, GL_STATIC_DRAW, attrib_seq_2, 1);
+			int attrib_seq_2[] = {3, 3};
+			create_array_buffer_object(new_food.center, new_food.size, GL_STATIC_DRAW, attrib_seq_2, 2);
 			food_generated = true;
 			// glDrawArrays(GL_POINTS, 0, 1);
 

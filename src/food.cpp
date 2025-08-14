@@ -55,6 +55,10 @@ food generate_food(ShapeType shape) {
     new_food.shape = shape;
     new_food.center[0] = random_point_x;
     new_food.center[1] = random_point_y;
+    new_food.center[2] = 1.0f;
+    new_food.center[3] = 1.0f;
+    new_food.center[4] = 1.0f;
+    new_food.center[5] = 1.0f;
 
     int food_coord_iter = 0;
     if (shape == TRIANGLE) {

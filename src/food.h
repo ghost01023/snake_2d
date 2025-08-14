@@ -9,7 +9,7 @@ enum ShapeType {SQUARE, CIRCLE, TRIANGLE};
 
 typedef struct {
     float *food_coords;
-    float center[3];
+    float center[6];
     int size;
     ShapeType shape;
 } food;
